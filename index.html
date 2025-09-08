@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creator Flow Academy</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <div>
+          <img
+            src="creators lofo tt.png"
+            alt="loading..."
+            style="width: 60px"
+          />
+        </div>
+        <h3>Creator Flow Academy</h3>
+        <p>Loading your educational journey...</p>
+      </div>
+    </div>
+
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen welcome-screen active">
+      <div class="welcome-container">
+        <div class="welcome-card">
+          <div class="welcome-image">
+            <div class="welcome-illustration">
+              <img
+                src="creators lofo tt.png"
+                alt="loading..."
+                style="width: 150px"
+              />
+            </div>
+          </div>
+          <div class="welcome-content">
+            <h1>Welcome to Creator Flow Academy</h1>
+            <p>
+              Join thousands of educators and students in building the future of
+              online education
+            </p>
+            <div class="welcome-buttons">
+              <button class="btn-primary" onclick="showAccountTypeSelection()">
+                Get Started
+              </button>
+              <button class="btn-secondary" onclick="skipWelcome()">
+                Skip to Dashboard
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account Type Selection Screen -->
+    <div id="account-type-screen" class="screen account-type-screen">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="app-logo">
+            <img src="creatore.png" alt="" style="width: 60px" />
+            <span>Creator Flow</span>
+          </div>
+          <h2>Choose Your Account Type</h2>
+          <p>Select how you'd like to use our platform</p>
+
+          <div class="account-type-options">
+            <div class="account-option" onclick="selectAccountType('creator')">
+              <div class="account-icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+              </div>
+              <h3>Creator Account</h3>
+              <p>
+                Create courses, build your following, and monetize your
+                expertise
+              </p>
+              <div class="account-features">
+                <div class="feature">
+                  <i class="fas fa-check"></i>
+                  <span>Create unlimited courses</span>
+                </div>
+                <div class="feature">
+                  <i class="fas fa-check"></i>
+                  <span>Track engagement metrics</span>
+                </div>
+                <div class="feature">
+                  <i class="fas fa-check"></i>
+                  <span>Earn from your content</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="account-option" onclick="selectAccountType('student')">
+              <div class="account-icon">
+                <i class="fas fa-user-graduate"></i>
+              </div>
+              <h3>Student Account</h3>
+              <p>Learn from top creators and engage with educational content</p>
+              <div class="account-features">
+                <div class="feature">
+                  <i class="fas fa-check"></i>
+                  <span>Access all courses</span>
+                </div>
+                <div class="feature">
+                  <i class="fas fa-check"></i>
+                  <span>Track learning progress</span>
+                </div>
+                <div class="feature">
+                  <i class="fas fa-check"></i>
+                  <span>Earn rewards for engagement</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen auth-screen">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="app-logo">
+            <img src="/cFacademy/creatore.png" alt="loading..." style="width: 60px" />
+            <span>Creator Flow</span>
+          </div>
+          <h2>Welcome Back</h2>
+          <p>
+            Sign in to your
+            <span id="account-type-display">creator</span> account
+          </p>
+
+          <form class="auth-form" onsubmit="login(event)">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                minlength="8"
+                title="Password must be at least 8 characters long,"
+              />
+            </div>
+            <button type="submit" class="btn-primary btn-full">Sign In</button>
+          </form>
+
+          <div class="auth-divider">
+            <span>or continue with</span>
+          </div>
+
+          <div class="social-login">
+            <button class="social-btn" onclick="socialLogin('google')">
+              <i class="fab fa-google"></i>
+            </button>
+            <button class="social-btn" onclick="socialLogin('facebook')">
+              <i class="fab fa-facebook"></i>
+            </button>
+            <button class="social-btn" onclick="socialLogin('twitter')">
+              <i class="fab fa-twitter"></i>
+            </button>
+          </div>
+
+          <p class="auth-switch">
+            Don't have an account?
+            <a href="#" onclick="showSignup()">Sign up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signup Screen -->
+    <div id="signup-screen" class="screen auth-screen">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="app-logo">
+            <img
+              src="creatore.png"
+              alt="loading..."
+              style="width: 60px"
+            />
+            <span>Creator Flow</span>
+          </div>
+          <h2>Create Account</h2>
+          <p>Join as a <span id="signup-account-type">creator</span></p>
+
+          <form class="auth-form" onsubmit="signup(event)">
+            <div class="form-group">
+              <label for="fullname">Full Name</label>
+              <input type="text" id="fullname" name="fullname" required />
+            </div>
+            <div class="form-group">
+              <label for="signup-email">Email</label>
+              <input type="email" id="signup-email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" required />
+            </div>
+            <div class="form-group">
+              <label for="signup-password">Password</label>
+              <input
+                type="password"
+                id="signup-password"
+                name="password"
+                required
+                minlength="8"
+                pattern="^(?=.*[!@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?]).+$"
+                title="Password must be at least 8 characters long and contain at least one special character"
+              />
+            </div>
+            <button type="submit" class="btn-primary btn-full">
+              Create Account
+            </button>
+          </form>
+
+          <p class="auth-switch">
+            Already have an account?
+            <a href="#" onclick="showLogin()">Sign in</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboard-screen" class="screen dashboard-screen">
+      <!-- Sidebar -->
+      <div class="nav_footer">
+        <aside id="sidebar" class="sidebar">
+          <div class="sidebar-header">
+            <div class="app-logo">
+              <img
+                src="creators lofo tt.png"
+                alt="loading..."
+                style="width: 60px"
+              />
+              <span>Creator Flow</span>
+            </div>
+          </div>
+
+          <div class="user-profile">
+            <div class="user-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="user-details">
+              <h3 id="sidebar-username">Creator Name</h3>
+              <p id="sidebar-account-type">Creator Account</p>
+            </div>
+            <div class="user-stats">
+              <div class="stat">
+                <span class="stat-number" id="sidebar-followers">0</span>
+                <span class="stat-label">Followers</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number" id="sidebar-students">0</span>
+                <span class="stat-label">Students</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number" id="sidebar-courses">0</span>
+                <span class="stat-label">Courses</span>
+              </div>
+            </div>
+          </div>
+
+          <nav class="sidebar-nav">
+            <ul class="menu">
+              <li class="menu-item active" onclick="showSection('dashboard')">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+              </li>
+              <li
+                class="menu-item"
+                onclick="showSection('engagement')"
+                id="engagement-menu"
+              >
+                <i class="fas fa-heart"></i>
+                <span>Engagement</span>
+                <div class="notification-badge" id="engagement-badge">0</div>
+              </li>
+              <li class="menu-item" onclick="showSection('courses')">
+                <i class="fas fa-play-circle"></i>
+                <span>Courses</span>
+              </li>
+              <li
+                class="menu-item"
+                onclick="showSection('students')"
+                id="students-menu"
+              >
+                <i class="fas fa-users"></i>
+                <span>Students</span>
+              </li>
+              <li class="menu-item" onclick="showSection('analytics')">
+                <i class="fas fa-chart-bar"></i>
+                <span>Analytics</span>
+              </li>
+              <li
+                class="menu-item"
+                onclick="showSection('rewards')"
+                id="rewards-menu"
+              >
+                <i class="fas fa-gift"></i>
+                <span>Rewards</span>
+                <div class="notification-badge" id="rewards-badge">0</div>
+              </li>
+              <li
+                class="menu-item"
+                onclick="showSection('monetization')"
+                id="monetization-menu"
+              >
+                <i class="fas fa-dollar-sign"></i>
+                <span>Monetization</span>
+                <div class="monetization-status" id="monetization-status">
+                  <i class="fas fa-lock"></i>
+                </div>
+              </li>
+              <li class="menu-item" onclick="showSection('messages')">
+                <i class="fas fa-envelope"></i>
+                <span>Messages</span>
+              </li>
+              <li class="menu-item" onclick="showSection('profile')">
+                <i class="fas fa-user-circle"></i>
+                <span>Profile</span>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="sidebar-footer">
+            <button class="logout-btn" onclick="logout()">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </button>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Header -->
+        <header class="main-header">
+          <button class="menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="header-content">
+            <div class="header-title">
+              <h2 id="page-title">Dashboard</h2>
+            </div>
+            <div class="header-actions">
+              <button
+                class="header-btn"
+                onclick="toggleNotifications()"
+                id="notifications-btn"
+              >
+                <i class="fas fa-bell"></i>
+                <div class="notification-badge" id="header-notification-badge">
+                  0
+                </div>
+              </button>
+              <div class="user-menu" onclick="showProfile()">
+                <div class="user-avatar">
+                  <i class="fas fa-user"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Content Sections -->
+        <section id="dashboard-section" class="content-section active">
+          <!-- Balance Card -->
+          <div class="balance-card">
+            <div class="balance-header">
+              <div class="balance-info">
+                <span class="balance-label">Total Earnings</span>
+                <div class="balance-amount" id="total-earnings">$0.00</div>
+              </div>
+              <div class="balance-actions">
+                <button
+                  class="balance-btn"
+                  onclick="requestFaceVerification('withdraw')"
+                  id="withdraw-btn"
+                >
+                  <i class="fas fa-download"></i>
+                  Withdraw
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="stat-info">
+                <div class="stat-number" id="total-followers">0</div>
+                <div class="stat-label">Total Followers</div>
+                <div class="stat-progress">
+                  <div class="progress-bar">
+                    <div
+                      class="progress-fill"
+                      id="followers-progress"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                  <span class="progress-text" id="followers-progress-text"
+                    >0/1000 to monetization</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-heart"></i>
+              </div>
+              <div class="stat-info">
+                <div class="stat-number" id="total-engagements">0</div>
+                <div class="stat-label">Total Engagements</div>
+                <div class="stat-trend positive">
+                  <i class="fas fa-arrow-up"></i>
+                  <span>+12% this week</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="stat-info">
+                <div class="stat-number" id="converted-students">0</div>
+                <div class="stat-label">Converted Students</div>
+                <div class="stat-description">From engagement rewards</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="action-buttons">
+            <button class="action-btn" onclick="showUploadModal()">
+              <i class="fas fa-plus"></i>
+              <span>Create Course</span>
+            </button>
+            <button class="action-btn" onclick="showSection('engagement')">
+              <i class="fas fa-heart"></i>
+              <span>View Engagement</span>
+            </button>
+            <button class="action-btn" onclick="showSection('rewards')">
+              <i class="fas fa-gift"></i>
+              <span>My Rewards</span>
+            </button>
+            <button class="action-btn" onclick="showSection('students')">
+              <i class="fas fa-users"></i>
+              <span>Manage Students</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Engagement Section -->
+        <section id="engagement-section" class="content-section">
+          <div class="section-header">
+            <h2>Engagement Tracking</h2>
+            <div class="header-filters">
+              <select
+                class="filter-select"
+                id="engagement-filter"
+                onchange="filterEngagement(this.value)"
+              >
+                <option value="all">All Engagements</option>
+                <option value="likes">Likes</option>
+                <option value="comments">Comments</option>
+                <option value="shares">Shares</option>
+                <option value="enrollments">Course Enrollments</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Engagement Overview -->
+          <div class="engagement-overview">
+            <div class="engagement-stat">
+              <div class="engagement-icon">
+                <i class="fas fa-thumbs-up"></i>
+              </div>
+              <div class="engagement-data">
+                <div class="engagement-number" id="total-likes">0</div>
+                <div class="engagement-label">Total Likes</div>
+              </div>
+            </div>
+
+            <div class="engagement-stat">
+              <div class="engagement-icon">
+                <i class="fas fa-comments"></i>
+              </div>
+              <div class="engagement-data">
+                <div class="engagement-number" id="total-comments">0</div>
+                <div class="engagement-label">Total Comments</div>
+              </div>
+            </div>
+
+            <div class="engagement-stat">
+              <div class="engagement-icon">
+                <i class="fas fa-share"></i>
+              </div>
+              <div class="engagement-data">
+                <div class="engagement-number" id="total-shares">0</div>
+                <div class="engagement-label">Total Shares</div>
+              </div>
+            </div>
+
+            <div class="engagement-stat">
+              <div class="engagement-icon">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <div class="engagement-data">
+                <div class="engagement-number" id="total-enrollments">0</div>
+                <div class="engagement-label">Course Enrollments</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Follower Engagement Progress -->
+          <div class="follower-engagement">
+            <h3>Follower to Student Conversion</h3>
+            <div class="conversion-list" id="conversion-list">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+
+          <!-- Recent Engagements -->
+          <div class="recent-engagements">
+            <h3>Recent Activity</h3>
+            <div class="activity-feed" id="engagement-feed">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Students Section -->
+        <section id="students-section" class="content-section">
+          <div class="section-header">
+            <h2>Student Management</h2>
+            <div class="header-actions">
+              <button class="btn-secondary" onclick="exportStudentData()">
+                <i class="fas fa-download"></i>
+                Export Data
+              </button>
+            </div>
+          </div>
+
+          <!-- Students Stats -->
+          <div class="students-stats">
+            <div class="stat-item">
+              <div class="stat-value" id="active-students">0</div>
+              <div class="stat-title">Active Students</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" id="new-this-month">0</div>
+              <div class="stat-title">New This Month</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" id="avg-engagement-rate">0%</div>
+              <div class="stat-title">Avg. Engagement Rate</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" id="retention-rate">0%</div>
+              <div class="stat-title">Retention Rate</div>
+            </div>
+          </div>
+
+          <!-- Student List -->
+          <div class="students-container">
+            <div class="students-filters">
+              <input
+                type="search"
+                placeholder="Search students..."
+                class="search-input"
+                id="student-search"
+                onkeyup="searchStudents(this.value)"
+              />
+              <select
+                class="filter-select"
+                id="student-filter"
+                onchange="filterStudents(this.value)"
+              >
+                <option value="all">All Students</option>
+                <option value="converted">Converted from Followers</option>
+                <option value="enrolled">Direct Enrollments</option>
+                <option value="active">Active This Week</option>
+              </select>
+            </div>
+
+            <div class="students-grid" id="students-grid">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Rewards Section -->
+        <section id="rewards-section" class="content-section">
+          <div class="section-header">
+            <h2>Rewards & Achievements</h2>
+            <div class="rewards-balance">
+              <div class="balance-item">
+                <span class="balance-label">Total Reward Points</span>
+                <span class="balance-value" id="total-reward-points">0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Rewards -->
+          <div class="active-rewards">
+            <h3>Active Conversion Tracking</h3>
+            <div class="rewards-grid" id="active-rewards-grid">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+
+          <!-- Reward History -->
+          <div class="reward-history">
+            <h3>Reward History</h3>
+            <div class="history-filters">
+              <button
+                class="filter-btn active"
+                data-filter="all"
+                onclick="filterRewardHistory('all')"
+              >
+                All
+              </button>
+              <button
+                class="filter-btn"
+                data-filter="conversions"
+                onclick="filterRewardHistory('conversions')"
+              >
+                Conversions
+              </button>
+              <button
+                class="filter-btn"
+                data-filter="milestones"
+                onclick="filterRewardHistory('milestones')"
+              >
+                Milestones
+              </button>
+              <button
+                class="filter-btn"
+                data-filter="bonuses"
+                onclick="filterRewardHistory('bonuses')"
+              >
+                Bonuses
+              </button>
+            </div>
+            <div class="history-list" id="reward-history-list">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses-section" class="content-section">
+          <div class="section-header">
+            <h2>Course Management</h2>
+            <button class="btn-primary" onclick="showUploadModal()">
+              <i class="fas fa-plus"></i>
+              Add New Course
+            </button>
+          </div>
+
+          <!-- Upload Area -->
+          <div class="upload-area" id="upload-area">
+            <div class="upload-content">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <h3>Drag & Drop Course Files</h3>
+              <p>Or click to browse and select files</p>
+              <input
+                type="file"
+                id="file-input"
+                multiple
+                accept=".mp4,.pdf,.zip,.pptx"
+              />
+            </div>
+          </div>
+
+          <!-- Courses Grid -->
+          <div class="courses-grid" id="courses-grid">
+            <!-- Dynamic content -->
+          </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics-section" class="content-section">
+          <div class="section-header">
+            <h2>Analytics Dashboard</h2>
+            <div class="time-filter">
+              <button
+                class="filter-btn active"
+                onclick="setAnalyticsTimeframe('7d')"
+              >
+                7 Days
+              </button>
+              <button class="filter-btn" onclick="setAnalyticsTimeframe('30d')">
+                30 Days
+              </button>
+              <button class="filter-btn" onclick="setAnalyticsTimeframe('90d')">
+                90 Days
+              </button>
+              <button class="filter-btn" onclick="setAnalyticsTimeframe('1y')">
+                1 Year
+              </button>
+            </div>
+          </div>
+
+          <!-- Analytics Summary -->
+          <div class="analytics-summary">
+            <div class="summary-grid">
+              <div class="summary-card">
+                <h3>Revenue Growth</h3>
+                <div class="summary-amount" id="revenue-growth">$0</div>
+                <div class="summary-trend positive">
+                  <i class="fas fa-arrow-up"></i>
+                  <span>+15% vs last period</span>
+                </div>
+              </div>
+
+              <div class="summary-card">
+                <h3>Engagement Rate</h3>
+                <div class="summary-amount" id="engagement-rate">0%</div>
+                <div class="summary-trend positive">
+                  <i class="fas fa-arrow-up"></i>
+                  <span>+8% vs last period</span>
+                </div>
+              </div>
+
+              <div class="summary-card">
+                <h3>Conversion Rate</h3>
+                <div class="summary-amount" id="conversion-rate">0%</div>
+                <div class="summary-description">Followers to Students</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="chart-container">
+            <h3>Revenue & Engagement Trends</h3>
+            <canvas id="analytics-chart"></canvas>
+          </div>
+
+          <!-- Detailed Metrics -->
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <h4>Top Performing Content</h4>
+              <div class="metric-list" id="top-content-list">
+                <!-- Dynamic content -->
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <h4>Audience Demographics</h4>
+              <div class="demographic-chart" id="demographics-chart">
+                <!-- Dynamic content -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Monetization Section -->
+        <section id="monetization-section" class="content-section">
+          <div class="section-header">
+            <h2>Monetization Center</h2>
+            <div class="monetization-status-display">
+              <div class="status-indicator" id="monetization-status-indicator">
+                <i class="fas fa-lock"></i>
+                <span>Not Eligible</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Monetization Requirements -->
+          <div class="monetization-requirements">
+            <h3>Monetization Requirements</h3>
+            <div class="requirements-list">
+              <div class="requirement-item">
+                <div class="requirement-icon">
+                  <i class="fas fa-users" id="followers-req-icon"></i>
+                </div>
+                <div class="requirement-info">
+                  <div class="requirement-title">1,000+ Followers</div>
+                  <div class="requirement-progress">
+                    <div class="progress-bar">
+                      <div
+                        class="progress-fill"
+                        id="followers-requirement-progress"
+                      ></div>
+                    </div>
+                    <span class="progress-text" id="followers-requirement-text"
+                      >0/1000</span
+                    >
+                  </div>
+                </div>
+                <div class="requirement-status" id="followers-req-status">
+                  <i class="fas fa-times"></i>
+                </div>
+              </div>
+
+              <div class="requirement-item">
+                <div class="requirement-icon">
+                  <i class="fas fa-heart" id="engagement-req-icon"></i>
+                </div>
+                <div class="requirement-info">
+                  <div class="requirement-title">100+ Total Engagements</div>
+                  <div class="requirement-progress">
+                    <div class="progress-bar">
+                      <div
+                        class="progress-fill"
+                        id="engagement-requirement-progress"
+                      ></div>
+                    </div>
+                    <span class="progress-text" id="engagement-requirement-text"
+                      >0/100</span
+                    >
+                  </div>
+                </div>
+                <div class="requirement-status" id="engagement-req-status">
+                  <i class="fas fa-times"></i>
+                </div>
+              </div>
+
+              <div class="requirement-item">
+                <div class="requirement-icon">
+                  <i class="fas fa-graduation-cap" id="courses-req-icon"></i>
+                </div>
+                <div class="requirement-info">
+                  <div class="requirement-title">3+ Published Courses</div>
+                  <div class="requirement-progress">
+                    <div class="progress-bar">
+                      <div
+                        class="progress-fill"
+                        id="courses-requirement-progress"
+                      ></div>
+                    </div>
+                    <span class="progress-text" id="courses-requirement-text"
+                      >0/3</span
+                    >
+                  </div>
+                </div>
+                <div class="requirement-status" id="courses-req-status">
+                  <i class="fas fa-times"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Methods -->
+          <div class="payment-methods" id="payment-methods-section">
+            <h3>Payment Methods</h3>
+            <div class="payment-cards">
+              <div
+                class="payment-card"
+                onclick="requestFaceVerification('add-payment')"
+              >
+                <div class="add-card-content">
+                  <i class="fas fa-plus"></i>
+                  <span>Add Payment Method</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Earnings Overview -->
+          <div class="earnings-overview" id="earnings-overview">
+            <h3>Earnings Overview</h3>
+            <div class="earnings-disabled">
+              <i class="fas fa-lock"></i>
+              <p>Complete monetization requirements to start earning</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Messages Section -->
+        <section id="messages-section" class="content-section">
+          <div class="section-header">
+            <h2>Messages</h2>
+            <button class="btn-secondary">
+              <i class="fas fa-search"></i>
+              Search
+            </button>
+          </div>
+
+          <div class="messages-container">
+            <div class="messages-sidebar">
+              <div class="message-filters">
+                <button
+                  class="filter-btn active"
+                  onclick="filterMessages('all')"
+                >
+                  All
+                </button>
+                <button class="filter-btn" onclick="filterMessages('students')">
+                  Students
+                </button>
+                <button class="filter-btn" onclick="filterMessages('system')">
+                  System
+                </button>
+              </div>
+              <div class="message-list" id="message-list">
+                <!-- Dynamic content -->
+              </div>
+            </div>
+            <div class="message-content">
+              <div class="no-message-selected">
+                <i class="fas fa-envelope-open"></i>
+                <h3>Select a conversation</h3>
+                <p>Choose a message from the list to start chatting</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile-section" class="content-section">
+          <div class="profile-header">
+            <div class="profile-avatar">
+              <div class="avatar-circle">
+                <i class="fas fa-user"></i>
+              </div>
+              <button
+                class="avatar-edit-btn"
+                onclick="requestFaceVerification('change-avatar')"
+              >
+                <i class="fas fa-camera"></i>
+              </button>
+            </div>
+            <div class="profile-info">
+              <h2 id="profile-username">Creator Name</h2>
+              <p id="profile-email">creator@example.com</p>
+              <div class="profile-badge">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span id="profile-account-type-badge">Creator Account</span>
+              </div>
+            </div>
+            <div class="profile-actions">
+              <button
+                class="btn-secondary"
+                onclick="requestFaceVerification('edit-profile')"
+              >
+                <i class="fas fa-edit"></i>
+                Edit Profile
+              </button>
+            </div>
+          </div>
+
+          <div class="profile-stats">
+            <div class="stat">
+              <div class="stat-number" id="profile-followers">0</div>
+              <div class="stat-label">Followers</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number" id="profile-students">0</div>
+              <div class="stat-label">Students</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number" id="profile-courses">0</div>
+              <div class="stat-label">Courses</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number" id="profile-earnings">$0</div>
+              <div class="stat-label">Total Earnings</div>
+            </div>
+          </div>
+
+          <div class="profile-content">
+            <div class="profile-card">
+              <h3>Account Information</h3>
+              <div class="info-grid">
+                <div class="info-item">
+                  <label>Full Name</label>
+                  <span id="profile-fullname">-</span>
+                </div>
+                <div class="info-item">
+                  <label>Email</label>
+                  <span id="profile-email-display">-</span>
+                </div>
+                <div class="info-item">
+                  <label>Account Type</label>
+                  <span id="profile-type-display">-</span>
+                </div>
+                <div class="info-item">
+                  <label>Member Since</label>
+                  <span id="profile-join-date">-</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-card">
+              <h3>Security Settings</h3>
+              <div class="security-options">
+                <div class="security-item">
+                  <div class="security-info">
+                    <h4>Face Verification</h4>
+                    <p>Enable face verification for sensitive actions</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input
+                      type="checkbox"
+                      id="face-verification-toggle"
+                      onchange="toggleFaceVerification(this.checked)"
+                    />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="security-item">
+                  <div class="security-info">
+                    <h4>Change Password</h4>
+                    <p>Update your account password</p>
+                  </div>
+                  <button
+                    class="btn-secondary"
+                    onclick="requestFaceVerification('change-password')"
+                  >
+                    Change
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Face Verification Modal -->
+    <div id="face-verification-modal" class="modal">
+      <div class="modal-content face-verification-content">
+        <div class="modal-header">
+          <h3>Face Verification Required</h3>
+          <button class="modal-close" onclick="closeFaceVerification()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="verification-step" id="verification-step-1">
+            <div class="verification-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h4>Security Verification</h4>
+            <p>
+              For your security, we need to verify your identity using face
+              recognition.
+            </p>
+            <div class="verification-action" id="verification-action-text">
+              <strong>Action:</strong>
+              <span id="verification-reason">Withdraw Funds</span>
+            </div>
+            <button class="btn-primary" onclick="startFaceVerification()">
+              <i class="fas fa-camera"></i>
+              Start Verification
+            </button>
+          </div>
+
+          <div class="verification-step hidden" id="verification-step-2">
+            <div class="camera-container">
+              <video id="verification-video" autoplay playsinline></video>
+              <div class="camera-overlay">
+                <div class="face-outline"></div>
+              </div>
+            </div>
+            <div class="verification-instructions">
+              <h4>Position your face in the circle</h4>
+              <p>
+                Look directly at the camera and ensure your face is well-lit
+              </p>
+              <div class="verification-controls">
+                <button
+                  class="btn-secondary"
+                  onclick="cancelFaceVerification()"
+                >
+                  Cancel
+                </button>
+                <button
+                  class="btn-primary"
+                  onclick="captureFace()"
+                  id="capture-btn"
+                  disabled
+                >
+                  <i class="fas fa-camera"></i>
+                  Capture
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="verification-step hidden" id="verification-step-3">
+            <div class="verification-processing">
+              <div class="processing-spinner"></div>
+              <h4>Verifying your identity...</h4>
+              <p>Please wait while we process your verification</p>
+            </div>
+          </div>
+
+          <div class="verification-step hidden" id="verification-step-4">
+            <div class="verification-result" id="verification-result">
+              <!-- Success or failure content will be inserted here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div id="notifications-panel" class="notifications-panel">
+      <div class="notifications-header">
+        <h3>Notifications</h3>
+        <button class="notifications-close" onclick="closeNotifications()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="notifications-content">
+        <div class="notifications-list" id="notifications-list">
+          <!-- Dynamic content -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
