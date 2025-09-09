@@ -50,8 +50,9 @@ body {
     var(--bg-tertiary) 100%
   );
   background: url(kairos.jpg);
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-size: 100% 100%;
+  background-attachment: fixed;
   color: var(--text-primary);
   overflow-x: hidden;
   min-height: 100%;
@@ -3155,3 +3156,4 @@ input:checked + .slider:before {
     display: none;
   }
 }
+
